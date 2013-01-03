@@ -1,5 +1,11 @@
 {% load url from future %}
 {% for tab in tabs %}
+{% if tab.type in active_tabs %}
+<strong>
+{% endif %}
   <a href="{% url tab.url_name %}">{{ tab.label }}</a>
+{% if tab.type in active_tabs %}
+</strong>
+{% endif %}
 {% endfor %} 
 

@@ -28,8 +28,13 @@ class BaseView(TemplateView):
         context.update(kwargs)
 
         context['tabs'] = tabs
+        context['active_tabs'] = [self.__class__] + \
+                                 list(self.__class__.__bases__)
 
         return context
+
+    def type(self):
+        return self.__class__
 
 class AView(BaseView):
     template_name = 'a.html'
