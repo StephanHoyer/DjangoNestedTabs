@@ -51,10 +51,18 @@ class ABView(AView):
     label = 'ab'
     url_name = 'ab'
 
-
 class BView(BaseView):
     template_name = 'b.html'
     label = 'b'
     url_name = 'b'
 
+class BAView(BView):
+    template_name = 'ba.html'
+    label = 'ba'
+    url_name = 'ba'
+
+class BBView(BView):
+    template_name = 'bb.html'
+    label = 'bb'
+    url_name = 'bb'
 

@@ -3,8 +3,6 @@
 
 {% block content %}
 
-{% for tab in tabs.BView %}
-<a href="{% url tab.url_name %}">{{ tab.label }}</a>
-{% endfor %} 
+{% include 'list.html' with tabs=tabs.BView %}
 
 {% endblock %}
