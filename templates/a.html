@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for tab in tabs.AView %}
+<a href="#">{{ tab.label }}</a>
+{% endfor %} 
+
+{% endblock %}
