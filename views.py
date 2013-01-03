@@ -18,9 +18,6 @@ class BaseView(TemplateView):
     __metaclass__ = _TabTracker
 
     def get_context_data(self, **kwargs):
-        """Add tab information to context. To retrieve list of all group tab
-        instances, use ``{{ tabs }}`` in your template."""
-
         # Get base context
         context = super(BaseView, self).get_context_data()
 
