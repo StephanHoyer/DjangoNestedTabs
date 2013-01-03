@@ -1,7 +1,4 @@
-{% load url from future %}
 <div>
-{% for tab in tabs.BaseView %}
-<a href="{% url tab.url_name %}">{{ tab.label }}</a>
-{% endfor %} 
+  {% include 'list.html' with tabs=tabs.BaseView %}
 </div>
 {% block content %}content{% endblock %}

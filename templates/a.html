@@ -1,9 +1,8 @@
 {% extends "base.html" %}
+{% load url from future %}
 
 {% block content %}
 
-{% for tab in tabs.AView %}
-<a href="#">{{ tab.label }}</a>
-{% endfor %} 
+{% include 'list.html' with tabs=tabs.AView %}
 
 {% endblock %}
