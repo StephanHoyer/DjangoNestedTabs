@@ -6,12 +6,16 @@ class _TabTracker(type):
     """Metaclass that tracks all subclasses that have set the _is_tab
     attribute. The classes are stored inside self._registry."""
     def __init__(cls, name, bases, attrs):
-        parent_classname = cls.__bases__[0].__name__
-        if parent_classname not in tabs:
-            tabs[parent_classname] = [];
-        tabs[parent_classname].append(cls);
+        try:
+            parent_type = cls.__bases__[0].tab_type
+            if parent_type not in tabs:
+                tabs[parent_type] = [];
+            tabs[parent_type].append(cls);
+        except AttributeError:
+            pass
 
 class BaseView(TemplateView):
+    tab_type = label = url_name = 'base'
 
     _registry = []
     template_name = 'base.html'
@@ -25,41 +29,37 @@ class BaseView(TemplateView):
         context.update(kwargs)
 
         context['tabs'] = tabs
-        context['active_tabs'] = [self.__class__] + \
-                                 list(self.__class__.__bases__)
+        context['active_tabs'] = [self.tab_type]
+        for cls in self.__class__.__bases__:
+            if hasattr(cls, 'tab_type'):
+                context['active_tabs'].append(cls.tab_type)
 
         return context
 
     def type(self):
-        return self.__class__
+        return self.tab_type
 
 class AView(BaseView):
+    tab_type = label = url_name = 'a'
     template_name = 'a.html'
-    label = 'a'
-    url_name = 'a'
 
 class AAView(AView):
+    tab_type = label = url_name = 'aa'
     template_name = 'aa.html'
-    label = 'aa'
-    url_name = 'aa'
 
 class ABView(AView):
+    tab_type = label = url_name = 'ab'
     template_name = 'ab.html'
-    label = 'ab'
-    url_name = 'ab'
 
 class BView(BaseView):
+    tab_type = label = url_name = 'b'
     template_name = 'b.html'
-    label = 'b'
-    url_name = 'b'
 
 class BAView(BView):
+    tab_type = label = url_name = 'ba'
     template_name = 'ba.html'
-    label = 'ba'
-    url_name = 'ba'
 
 class BBView(BView):
+    tab_type = label = url_name = 'bb'
     template_name = 'bb.html'
-    label = 'bb'
-    url_name = 'bb'
 
