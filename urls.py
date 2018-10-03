@@ -10,3 +10,7 @@ urlpatterns = patterns('',
     url(r'^b/a/$', BAView.as_view(), name=BAView.url_name),
     url(r'^b/b/$', BBView.as_view(), name=BBView.url_name),
 )
+
+
+
+asdasdas
